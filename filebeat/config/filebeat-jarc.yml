@@ -1,0 +1,12 @@
+filebeat.inputs:
+- type: log
+  paths:
+    - /Users/selcuk/versapay/logs/*.log
+  tags: ["jarc"]
+  json.key_under_root: true
+  json.add_error_key: false
+
+output.elasticsearch:
+  hosts: ["http://localhost:9201"]
+  indices:
+    - index: "jarclog-%{[beat.version]}-%{+yyyy.MM.dd}"
